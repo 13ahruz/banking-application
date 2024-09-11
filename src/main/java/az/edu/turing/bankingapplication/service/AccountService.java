@@ -28,11 +28,12 @@ public class AccountService {
 
         AccountEntity accountEntity = accountMapper.toAccountEntity(accountRequest);
         accountEntity.setUser(userEntity);
+
+        accountEntity.setStatus(AccountStatus.ACTIVATED); // Or some default status
         AccountEntity savedProfile = accountRepository.save(accountEntity);
 
         return accountMapper.toAccountDto(savedProfile);
     }
-
     public Optional<AccountResponse> getAccount(Long u_id, Long a_id) {
         UserEntity userEntity = userRepository.findById(u_id)
                 .orElseThrow(() -> new UserNotFoundException("User not found with id: " + u_id));

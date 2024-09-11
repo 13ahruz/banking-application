@@ -7,6 +7,6 @@ public record AccountRequest(
         @NotBlank String username,
         @NotBlank String password,
         @NotBlank @Email String email,
-        @NotBlank byte[] profilePhoto // It's good to ensure this isn't null
+        @NotBlank byte[] profilePhoto
 ) {
 }

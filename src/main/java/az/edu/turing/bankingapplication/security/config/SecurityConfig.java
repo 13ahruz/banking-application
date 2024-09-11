@@ -20,7 +20,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .anyRequest().authenticated() // all requests require authentication
+                        .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable);
@@ -31,8 +31,7 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService() {
         UserDetails user = User.builder()
                 .username("ali12")
-                .password("{noop}12345") // {noop} tells Spring Security to not encrypt the password
-                .roles("USER")
+                .password("{noop}12345")
                 .build();
 
         return new InMemoryUserDetailsManager(user);
